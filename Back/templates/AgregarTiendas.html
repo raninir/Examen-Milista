@@ -1,0 +1,76 @@
+
+{% extends "maqueta.html" %}
+{% load staticfiles %}
+{% block Lista %}
+{% if tienda %}
+<div class="Tiendas">
+        <table>
+           
+                <tr>  
+                    <td>Foto </td>  
+                    <td>Nombre Tienda </td>
+                    <td>Nombre Sucursal </td>
+                    <td>direccion </td>
+                    <td>ciudad </td>
+                    <td>tipo Tienda </td>
+                    <td>Pagina web</td>
+                </tr>
+               
+                {% for t in tienda %}
+                <tr>
+                    <td> <img src="/media/{{t.fotoTienda}}" width="50%" alt=""> </td>
+                    <td>{{ t.nombreTienda }}</td>
+                    <td>{{ t.nombreSucursal }}</td>
+                    <td>{{ t.direccion }}</td>
+                    <td>{{ t.ciudad }}</td>
+                    <td>{{ t.tipoTienda }}</td>
+                    <td>{{ t.paginaWeb }}</td>
+                </tr>
+                {% endfor %}
+    
+            {% else %}
+                <h1>No hay Tiendas registradas</h1>
+            {% endif %}
+        
+        </table>
+    </div>   
+    
+{% endblock %}
+
+
+
+
+{% block Formulario %}
+
+<div>
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+    <button id ="btn"type="submit">Agregar</button>
+    
+    </form>
+</div>
+
+<script> 
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', function(){
+            Push.create ("Se a Registrado Exitosamente una Tienda" ,{
+                body: " As registrado una tienda amigo :D",
+                icon: "images/logo.png",
+                timeout: 4000,
+                onClick: function ()
+                 {
+                    this.close();
+                }
+            });
+        });
+</script>
+
+<script src="{% static 'js/push.min.js' %} " ></script>
+
+{% endblock %}        
+
+
+
+

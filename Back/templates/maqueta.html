@@ -1,0 +1,81 @@
+{% load staticfiles %}<!-- CARGA LOS DATOS DE LA CARPETA STATIC TANTO FOTOS COMO OTROS ARCHIVOS COMO EL CSS Y EL JS -->
+<!DOCTYPE html>
+<html lang="es">
+    {% load pwa %}
+<head>
+        {%progressive_web_app_meta %}
+	<meta charset="UTF-8">
+	<title> Mi Lista </title>
+
+	<meta name="description" content="Pagina completa con Flexbox">
+	<script src="prefix.js" type="test/javascript"></script>
+	<meta name="viewport" content="width=device-widtg, user-scalable=no, initial-scale=1.0,maximun-scale=1.0,minimun-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/estilos.css'%}">
+	<link rel="stylesheet" href="{% static 'css/jquery.bxslider.css' %}">
+	<script src="{%static 'js/jquery.js'%}"></script>
+	<script src="{% static 'js/jquery.bxslider.min.js'%}"></script>
+</head> 
+<body>
+		
+			<img class="logo" src="{% static 'images/logo.png'%}"  style="width:250px; height:100px;" >
+		
+  <div class="contenedor">
+        
+    
+    <div>
+        {% if actual %}
+            <div class="logo">Bienvenido {{actual.username}}</div>
+            <button class= "salir"><a href="{% url 'logout' %}">Salir</a></button>
+        {%endif%}
+    </div> 
+
+			<nav class="menu_main">
+                <a href="{% url 'inicio'%}">Inicio</a>
+                <a href="#">Comunidad </a>
+                <a href="{% url  'AgregarProducto'%}"> Crea tu lista </a>
+                <a href="{% url  'agregartiendas'%}"> Agregar y ver Tiendas </a>
+                {% if request.user.is_staff	%}
+				<a href="{% url 'admin' %}">Administracion </a>
+				{% endif %}
+                <a href="{% url 'login' %}">Iniciar Seción </a>
+                <a href="{% url 'logout' %}">Salir </a>
+
+			</nav>
+
+
+                
+                
+                
+			
+            {% block MiLista %}
+
+            {% endblock %}
+            <section>
+             <div class="contenido" background="#83EEBF">
+                    {% block Login%}
+                    {% endblock %}
+                    {% block Lista%}
+                    {% endblock %}
+                    {% block Formulario%}
+                    {% endblock %}
+                    {% block Perfil%}
+                    {% endblock %}
+				
+                </div>
+            </section>
+				 
+
+	</div>
+<footer> <h2> Desarrollo web y movile </h2> 
+<h3> Tomas Morales </h3>
+<h3> Richard Aniñir </h3>
+<h3> Manuel Moreno </h3>
+
+
+</footer>
+</body>
+ 
+ <script src=" {% static 'js/codigo.js' %}" ></script>
+ <script src="{% static 'js/push.min.js' %} " ></script>
+</html>
+</html>

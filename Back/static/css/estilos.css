@@ -1,0 +1,92 @@
+* {
+	margin: 0;
+	padding: 0;/*Eliminando los bordes que entrega el navegador por defecto*/
+	box-sizing: border-box;/**cambia el modelo de caja por defecto de los navegadores/
+	font-family: arial;/*fuente que tendran las letras en toda la pagina*/
+	font-family: arial;
+}
+
+
+.contenedor {
+	background:#fff ;/*color de fondo blanco*/
+	margin:auto;/*margen automatico para que se centre en la pantalla*/
+	display:flex;/* con display flex indico que los elementos seran responsive */
+	flex-flow:row wrap;	/*con Flex-flow:row wrap indico que seran flex ls elementos */
+	
+} 
+ 
+ .logo{
+ 	display:block;
+	margin: auto;
+}
+
+nav {
+	width:100%;
+	display:flex;
+	flex-wrap:wrap;
+	
+}
+
+nav a {
+	border-bottom: #fff 1px solid;
+	background:#273746      ;
+	color:#fff;
+	text-align: center;
+	text-decoration: none;
+	padding: 30px;
+
+	border-bottom: 1px solid #273746   ;
+	flex-grow:1;
+}
+
+nav a:hover {
+	background:#8E8E8E  ;
+
+}
+
+body {
+	background:#fff
+}
+
+.carrusel {
+	display:line-block;
+	margin: auto;
+	
+}
+
+section{
+	display: block;
+	margin:auto;
+	margin-bottom: 20px;
+	padding-bottom:20px;
+	flex:1 1 70%;
+	text-align:center;
+}
+
+footer{
+	background: #C8C8C8;
+	display: block;
+	text-align: center;
+	padding: 10px;
+}
+
+footer h3{
+	color: #fff;
+}
+
+.main{
+	background: #273746;
+	color:#E5E5E5;
+}
+
+.socialer {
+	background:#273746;
+	width: 100%;
+	padding:1px;
+
+	/* Flexbox */
+	display: flex;
+	flex-wrap:wrap;
+	justify-content:space-between;
+	flex-direction: ROW;
+}

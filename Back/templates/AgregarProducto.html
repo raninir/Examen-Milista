@@ -1,0 +1,84 @@
+
+{% extends "maqueta.html" %}
+{% load staticfiles %}
+{% block Lista %}
+{% if producto %}
+<div class="CreateLista">
+    <table>
+        <thead class="label-CreateLista">
+        {% if actual %}
+            <tr> 
+                <td>Nombre Producto </td>
+                <td>costo presupuestado </td>
+                <td>costo real </td>
+                <td>Descripcion </td>
+            </tr>
+        </thead>
+        <tbody>
+           
+            {% for p in producto %}
+            <tr>
+                
+                <td>{{ p.Nombreproducto }}</td>
+                <td>{{ p.costoPresupuesto }}</td>
+                <td>{{ p.costoReal }}</td>
+                <td>{{ p.descripcionProducto }}</td>
+            </tr>
+            {% endfor %}
+
+            {% else %}
+            <h1>No hay Listas registradas</h1>
+
+            {% endif %}
+        </tbody>
+    </table>
+    {%endif%}
+</div>   
+
+<script>
+function SumarProductos(CreateLista){
+    var filas = document.getElementById("filas");
+    var url = "http://127.0.0.1:8000/AgregarProducto/" + CreateLista ;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);
+    xhr.send(null);
+    var productos = JSON.parse(xhr.responseText);
+    var TotalProducto = 0;
+    producto.forEach(function(producto) {
+        TotalProducto += Number(producto.costoReal);
+    });
+
+    return TotalProducto;
+}
+</script>
+
+{% endblock %}
+
+
+{% block Formulario %}
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button id="btn" type="submit"> Agregar</button>
+</form>
+
+<script> 
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', function(){
+            Push.create ("Se a Registrado Exitosamente un producto" ,{
+                body: " Has registrado un producto ",
+                icon: "images/Logo.png",
+                timeout: 4000,
+                onClick: function ()
+                 {
+                    this.close();
+                }
+            });
+        });
+</script>
+
+<script src="{% static 'js/push.min.js' %} " ></script>
+    
+{% endblock %}
+
